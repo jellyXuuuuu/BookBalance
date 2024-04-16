@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- search form -->
+<form action="{% url 'search' %}" method="post" class="content-area text-center">
+    {% csrf_token %}
+    <label for="date">Choose a date:</label>
+    <input type="date" id="date" name="date" required>
+    <button class="search-link2" type="submit">Search</button>
+</form>
+
+<!-- search results -->
+{% if records %}
+    <h2 class="content-area text-center">Search Results</h2>
+    <table class="table content-area text-center">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.Date|date:"Y-m-d" }}</td>
+                <td>{{ record.get_Category_display }}</td>
+                <td>{{ record.description }}</td>
+                <td>{{ record.Amount }}</td>
+                <td>{{ record.get_type_display }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="content-area text-center">Total In: {{ total_in }} |
+    Total Out: {{ total_out }} |
+    Net Total: {{ total }}</p>
+{% else %}
+<br>
+    <p class="content-area text-center">No records found for the selected date.</p>
+{% endif %}
+{% endblock %}

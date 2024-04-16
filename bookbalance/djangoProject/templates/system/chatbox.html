@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}
+<title>ChatBox Page</title>
+{% endblock %}
+
+{% block content %}
+<main class="chatbox-page">
+    <br>
+<h3 >Enter your query and get related reocrd.</h3><br>
+<form action="{% url 'chatbox' %}" method="post">
+    {% csrf_token %}
+    <label for="user_query">Enter your query:</label>
+    <input type="text" id="user_query" name="query">
+    <label for="date">Date (YYYY-MM-DD):</label>
+    <input type="text" id="date" name="date">
+    <input type="submit" value="Submit">
+</form>
+    {% if record or records %}
+    <h4 class="content-area text-center">Results</h4>
+    <table class="table table-bordered content-area text-center" width="600">
+        <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Amount</th>
+        </tr>
+        {% if record %}
+        <tr>
+            <td>{{ record.Date }}</td>
+            <td>{{ record.get_Category_display }}</td>
+            <td>{{ record.description }}</td>
+            <td>{{ record.get_type_display }}</td>
+            <td>${{ record.Amount }}</td>
+        </tr>
+        {% endif %}
+        {% if records %}
+        {% for record in records %}
+        <tr>
+            <td>{{ record.Date }}</td>
+            <td>{{ record.get_Category_display }}</td>
+            <td>{{ record.description }}</td>
+            <td>{{ record.get_type_display }}</td>
+            <td>${{ record.Amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+    </table>
+{% else %}
+    <p>No records found.</p>
+{% endif %}
+</main>
+{% endblock %}

@@ -1,0 +1,4 @@
+venv/
+djangoProject/djangoProject/__pycache__/
+djangoProject/example/__pycache__/
+djangoProject/example/migrations/__pycache__/

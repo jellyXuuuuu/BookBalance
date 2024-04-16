@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+<title>Account Setting</title>
+{% endblock %}
+{% block content %}
+<main>
+   <div class="content-area">
+    <h3>Account Settings</h3>
+    <table class="table table-bordered text-center">
+        <thead>
+        <tr>
+            <th class="td">Username</th>
+            <td class="td">Email/Phone Number</td>
+
+        </tr>
+        </thead>
+        <tr>
+             <th>{{ user.username }}</th>
+             <td>{{ user.email }}</td>
+
+         </tr>
+
+    </table>
+
+<br>
+<br>
+
+    <form method="post" class="text-center login_box">
+        <!-- {% csrf_token %} -->
+        <div class="form_text_ipt">Type your old password:
+            <input name="old_password" type="text" placeholder="Old password" required="">
+        </div>
+        <br>
+        <div class="form_text_ipt" >Type your new password:
+            <input name="new_password" type="password" placeholder="New password" required="">
+        </div>
+        <br>
+        <div class="form_text_ipt">Repeat your old password:
+        <input name="repassword" type="password" placeholder="Repeat password" required="">
+    </div>
+    <br>
+
+        <button type="submit" class="search-link2">Change Password</button>
+        <a class="search-link2" href="{% url 'mainpage_with_username' username=username %}">Home Page</a>
+    </form>
+
+
+
+    {% if messages %}
+    <ul class="messages text-center">
+        {% for message in messages %}
+            <li class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %} 
+
+
+    </div>
+
+</main>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+<title>Main Page</title>
+{% endblock %}
+{% block content %}
+<main>
+   <div class="content-area">
+   <h3>BookBalance: To balance your budget wisely</h3><br>
+   <p>Welcome user {{ username }}!</p>
+    <!-- <a href="{% url 'logout' %}">Logout</a> -->
+    <p><a class="search-link2" href="{% url 'record_list_with_username' username=username %}">See current records here</a>
+    
+
+    <a class="search-link2" href="{% url 'account' username=username %}">Account Setting</a></p>
+    </div>
+
+
+    <div class="image-grid">
+      <div class="image-item"><img src="{% static 'images/grocery.png' %}" alt="Image 1"><p>Grocery</p></div>
+      <div class="image-item"><img src="{% static 'images/entertainment.png' %}" alt="Image 2"><p>Entertain</p></div>
+      <div class="image-item"><img src="{% static 'images/transportation.png' %}" alt="Image 3"><p>Transport</p></div>
+      <div class="image-item"><img src="{% static 'images/housing.png' %}" alt="Image 4"><p>Housing</p></div>
+      <div class="image-item"><img src="{% static 'images/medical.png' %}" alt="Image 5"><p>Medical</p></div>
+      <div class="image-item"><img src="{% static 'images/education.png' %}" alt="Image 6"><p>Education</p></div>
+      <div class="image-item"><img src="{% static 'images/investment.png' %}" alt="Image 7"><p>Investment</p></div>
+      <div class="image-item"><img src="{% static 'images/other.png' %}" alt="Image 8"><p>Other</p></div>
+    </div>
+
+    <br>
+</main>
+{% endblock %}
+

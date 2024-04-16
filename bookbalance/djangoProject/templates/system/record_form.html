@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Record Form</title>
+{% endblock %}
+
+{% block content %}
+<main>
+   <div class="content-area">
+
+ <h3>{% if object %}Edit Record {% else %} Create New Record {% endif %}</h3>
+
+     <form action="" method="post" enctype="multipart/form-data" class="record-form">
+         {% csrf_token %}
+         <input type="hidden" name="username" value="{{ username }}">
+         {{ form.as_p }}
+         <p><input type="submit" value="Submit">
+         <a href="{% url 'record_list_with_username' username=username %}" class="search-link2" value="Back">Back</a></p>
+     </form>
+
+ </div>
+</main>
+{% endblock %}

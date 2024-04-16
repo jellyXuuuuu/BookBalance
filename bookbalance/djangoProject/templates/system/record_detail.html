@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Current Record Detail</title>
+{% endblock %}
+
+{% block content %}
+<main>
+   <div class="content-area">
+    <p>Hi {{ username }}</p>
+ <p> Record Name: {{ record.id }} | <a href="{% url 'record_update' username=username pk=record.id %}">Update</a> |
+     <a href="{% url 'record_delete' username=username pk=record.id %}">Delete</a>
+ </p>
+ <!-- <p> Record Status: {{ record.get_status_display }} </p> -->
+ <p> Record Category: {{ record.get_Category_display }} </p>
+  <p> Record Description: {{ record.description }} </p>
+   <p> Record Date: {{ record.Date|date:"Y-m-d" }} </p>
+    <p> Record Amount: {{ record.Amount }} </p>
+ 
+ <p> <a href="{% url 'record_list_with_username' username=username %}">View All Records</a> |
+     <a href="{% url 'record_create_with_username' username=username %}">New Record</a>
+ </p>
+</div>
+</main>
+{% endblock %}

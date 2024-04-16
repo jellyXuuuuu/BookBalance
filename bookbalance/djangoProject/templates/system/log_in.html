@@ -1,0 +1,74 @@
+{% extends "base_login.html" %}
+{% load static %}
+{% block title %}
+<title>Log In</title>
+{% endblock %}
+{% block link %}
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles-login.css' %}">
+
+    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+
+{% endblock %}
+{% block content %}
+	<main>
+		<div class="content-area">
+			<p>
+			<div class="wrap login_wrap">
+			<div class="content">
+				<div class="login_box">
+					<div class="login_form">
+						<h3><div class="login_title">
+							Log In
+						</div></h3>
+						<form action="{% url 'login' %}" method="post">
+
+							<div class="form_text_ipt">
+								<p>
+                                <label>
+                                    <input name="username" type="text" placeholder="username" required>
+                                </label>
+                            	</p>
+                            </div>
+
+							<div class="form_text_ipt">
+								<p>
+                                <label>
+                                    <input name="password" type="password" placeholder="password" required>
+                                </label>
+                            	</p>
+                            </div>
+
+							<div class="form_check_ipt">
+								<div class="left check_left">
+									<input type="checkbox" name="remember" id="remember"> 
+                                    <label for="remember">Save the password for next login.</label>
+								</div>
+
+							</div>
+							<div class="form_btn">
+								<button type="submit" > Log In </button>
+							</div>
+							<div class="form_reg_btn">
+								<span>Still have no account?</span><a href="{% url 'register' %}">Register Now Here.</a>
+							</div>
+						</form>
+                        {% if messages %}
+                            <ul class="messages text-center">
+                                {% for message in messages %}
+                                    <li class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+            </p>
+		</div>
+	</main>
+{% endblock %}
+

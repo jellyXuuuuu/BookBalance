@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Support Page</title>
+{% endblock %}
+{% block content %}
+
+    <main>
+        <div class="content-area">
+            <h3>Support</h3>
+            <p>Need help or have questions? Contact us through the form below or reach out via email at support@example.com.</p>
+            <form id="support-form" action="{% url 'report'%}" method="post">
+                
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </main>
+
+{% endblock %}

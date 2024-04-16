@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+<title>Record List</title>
+{% endblock %}
+
+{% block content %}
+<main>
+   <div class="content-area text-center">
+
+     <h3>Record List</h3>
+
+    <div class="image-grid">
+      <div class="image-item"><img src="{% static 'images/grocery.png' %}" alt="Image 1">Grocery</div>
+      <div class="image-item"><img src="{% static 'images/entertainment.png' %}" alt="Image 2">Entertain</div>
+      <div class="image-item"><img src="{% static 'images/transportation.png' %}" alt="Image 3">Transport</div>
+      <div class="image-item"><img src="{% static 'images/housing.png' %}" alt="Image 4">Housing</div>
+      <div class="image-item"><img src="{% static 'images/medical.png' %}" alt="Image 5">Medical</div>
+      <div class="image-item"><img src="{% static 'images/education.png' %}" alt="Image 6">Education</div>
+      <div class="image-item"><img src="{% static 'images/investment.png' %}" alt="Image 7">Investment</div>
+      <div class="image-item"><img src="{% static 'images/other.png' %}" alt="Image 8">Other</div>
+    </div>
+
+    <br>
+    
+     <p><a class="search-link2" href="{% url 'record_create_with_username' username=username %}">+ Add A New Record</a>
+     <a class="search-link2" href="{% url 'set_budget' %}">+ Set a budget</a></p>
+
+     <h5>User {{ username }}'s Record List History:</h5>
+     <br>
+     
+        <table class="table table-bordered" width="600">
+        <thead>
+        <tr>
+            <th class="td">Time</th>
+            <td class="td">Category</td>
+            <td class="td">Description</td>
+            <td class="td">Amount</td>
+            <td class="td">In/Out</td>
+            <td class="td">Edit/Delete</td>
+        </tr>
+        </thead>
+     {% for record in records %}
+         <tr>
+             <th>{{ record.Date|date:"Y-m-d" }}</th>
+             <td>{{ record.get_Category_display }}</td>
+             <td>{{ record.description }}</td>
+             <td>{{ record.Amount }}</td>
+             <td>
+                 {% if record.type == 1 %}
+                     Out
+                 {% else %}
+                     In
+                 {% endif %}
+             </td>
+             <td class="text-center">
+                 <a class="link text-center" href="{% url 'record_update' username=username pk=record.id %}">Update</a> |
+                 <a class="link text-center" href="{% url 'record_delete' username=username pk=record.id %}">  Delete</a>
+             </td>
+         </tr>
+     {% endfor %}
+        </table>
+        <div class="row">
+            <div class="col text-center">
+                <p><strong>Budget:</strong> {{ budget|floatformat:2 }}</p>
+            </div>
+            <div class="col">
+                <p><strong>Rest:</strong> {{ rest|floatformat:2 }}</p>
+            </div>
+            <div class="col">
+                <p><strong>Total In:</strong> {{ total_in|floatformat:2 }}</p>
+            </div>
+            <div class="col">
+                <p><strong>Total Out:</strong> {{ total_out|floatformat:2 }}</p>
+            </div>
+            <div class="col">
+                <p><strong>Total:</strong> {{ total|floatformat:2 }}</p>
+            </div>
+        </div>
+    {% if username %}
+    
+    
+    <p><a class="search-link2" href="{% url 'mainpage_with_username' username=username %}">Home Page</a></p>
+    {% endif %}
+
+   </div>
+</main>
+{% endblock %}
+

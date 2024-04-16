@@ -1,0 +1,71 @@
+{% extends "base_login.html" %}
+{% load static %}
+{% block title %}
+<title>Log In</title>
+{% endblock %}
+{% block link %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles-login.css' %}">
+
+    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+
+{% endblock %}
+{% block content %}
+	<main>
+		<div class="content-area">
+			<p>
+
+		<div class="wrap login_wrap">
+			<div class="content">
+
+				<div class="logo"></div>
+
+				<div class="login_box">
+
+					<div class="login_form">
+						<h3><div class="login_title" >
+							Register
+						</div></h3>
+						<form action="{% url 'register'%}" method="post">
+                            <div class="form_text_ipt" >
+								<input name="username" type="text" placeholder="username" required="">
+                            </div>
+							<div class="form_text_ipt">
+								<input name="email" type="text" placeholder="phone number/email" required="">
+							</div>
+							<div class="form_text_ipt" >
+								<input name="password" type="password" placeholder="password" required="">
+							</div>
+							<div class="form_text_ipt">
+								<input name="repassword" type="password" placeholder="Repeat password" required="">
+							</div>
+							<div class="form_btn" style="text-align: center;">
+								<button type="submit" >Register</button>
+							</div>
+							<div class="form_reg_btn" style="text-align: center;">
+								<span>Already have an account?</span><a href="{% url 'login' %}">Click here to login.</a>
+							</div>
+						</form>
+                        {% if messages %}
+                            <ul class="messages text-center">
+                                {% for message in messages %}
+                                    <li class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+						<div class="other_login" style="text-align: center;">
+							<div class="left other_left">
+								<br>
+								<span>Other Login Way:</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</p>
+		</div>
+	</main>
+{% endblock %}
